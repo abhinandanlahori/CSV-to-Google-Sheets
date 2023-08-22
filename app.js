@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
@@ -8,7 +6,7 @@ const path = require('path');
 const app = express();
 const { google } = require('googleapis');
 const fs = require('fs');
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 // Google Sheets API setup
 const credentials = require('./credentials1.json'); // Your Google Sheets API credentials
