@@ -1,6 +1,6 @@
 # CSV-to-Google-Sheets
 
-Public URL: <strong>https://csv-to-google-sheets.onrender.com/</strong>
+   <strong>Public URL: https://csv-to-google-sheets.onrender.com/</strong>
 
 1. Clone the repository: git clone https://github.com/abhinandanlahori/CSV-to-Google-Sheets.git
 
