@@ -1,5 +1,7 @@
 # CSV-to-Google-Sheets
 
+Public URL: <strong>https://csv-to-google-sheets.onrender.com/</strong>
+
 1. Clone the repository: git clone https://github.com/abhinandanlahori/CSV-to-Google-Sheets.git
 
 2. Open the root folder, in terminal, install all the dependencies by: npm i 
