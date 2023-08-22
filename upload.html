@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSV to Google Sheets | StackIt</title> 
+  <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+  <script type="text/javascript" src="https://code.highcharts.com/modules/data.js"></script>
+  <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+    <h1>Hello there 👋</h1>
+    <p class="info">This is an assignment given by <a href="https://www.nowstackit.com/">StackIt</a> <br /><br /> Upload a .CSV file and it will automatically <br />populate the CSV data in Google Sheets. <br /><br /> This website has following features:</p>
+    <ul class="features">
+        <li>If a user re-imports the same structured CSV file in a particular sheet, the CSV uploaded should not be overwritten but rather appended.</li>
+        <li>Once the csv is uploaded, a visualisation (charts, bar graph, pie chart) should be automatically created based on user input and should be emailed to user. Take the email id as input.</li>
+    </ul>
+    <form action="/upload"  method="post" enctype="multipart/form-data" id="file_upload">  
+        <input type="file" name="csvFile" class="fileInput" accept=".csv"> <br> <br>
+        <input type="checkbox" name="sendEmail" id="sendEmail"> 
+        <label>
+           Check if you want to receive an email with chart.
+        </label> <br> <br> <br>
+        <input type="text" class="uploadCSV" name="email" id="email" placeholder="Enter email"> <br><br>
+        <button type="submit">Upload CSV</button>
+    </form> 
+
+<style>
+* {
+    background-color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;    
+}
+
+a{
+    color: #ff6e2c;
+    font-weight: 600;
+}
+
+h1{
+    margin-top: 2%;
+}
+
+.uploadButton{
+    margin-top: -7.5vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fileInput{
+    margin-top: -200px;
+}
+
+input {
+    background-color: lightgray;
+    padding: 2%;
+    margin-top: -280px;
+    border-style: none;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    color: black;
+    padding: 0.5em;
+    border: none;
+    border-radius: 20px;
+} 
+
+.uploadCSV{
+    padding: 1%;
+    width: 20%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+button {
+    background-color: #ff6e2c;
+    border-style: none;
+    padding: 20px;
+    margin-top: -25%;
+    font-weight: 600;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+button:hover {
+    margin-top: -25%;
+    background-color: #ff6e2c;
+    border-style: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.info{
+    margin-top: 2em;
+    text-align: center;
+}
+ul{
+    padding: 100px;
+}
+
+li{
+    padding: 10px;
+    text-align: left;
+}
+
+.features{
+    padding-top: 0px;
+}
+
+.background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; /* Ensure video is behind other elements */
+}
+</style>
+      <!-- <script>
+        document.getElementById('file_upload').addEventListener('submit', (evt) => {
+            console.log(evt, "evt")
+            debugger;
+        })
+      </script> -->
+
+<script>
+    document.getElementById('file_upload').addEventListener('submit', async (event) => {
+    //  event.preventDefault();
+     const sendEmail = document.getElementById('sendEmail').checked;
+     const emailInput = document.getElementById('email');
+     const userEmail = emailInput.value;
+     console.log("1234567")
+     if (sendEmail) {
+     
+         await fetch('/send-email', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json'
+                },
+             body: JSON.stringify({ sendEmail: 'on', email: userEmail })
+        });
+    }
+   });
+</script>
+
+
+
+</body>
+
+</html>
